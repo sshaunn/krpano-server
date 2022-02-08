@@ -15,20 +15,20 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(morgan('dev'));
 
-const port = 3000;
+const port = 3001;
 
-app.post('/upload', async (req, res) => {
+app.post('/upload', (req, res) => {
     try{
         if(!req.files) {
             res.send({
                 status: false,
                 message: 'No file uploaded...'
             })
-        } else if (req.body === {}) {
-            res.send({
-                status: false,
-                message: 'Empry object uploaded...'
-            })
+        // } else if (req.body === {}) {
+        //     res.send({
+        //         status: false,
+        //         message: 'Empry object uploaded...'
+        //     })
         } else {
             let avatar = req.files.avatar;
             avatar.mv('./uploads/' + avatar.name);
